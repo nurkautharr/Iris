@@ -16,8 +16,8 @@ model = RandomForestClassifier(random_state=42)
 model.fit(X_train, y_train)
 
 # Save model
-joblib.dump(model, "iris_model.pkl")
-print("Model trained and saved as iris_model.pkl")
+joblib.dump(model, "model.pkl")
+print("Model trained and saved as model.pkl")
 
 score = model.score(X_test, y_test)
 print(f"Model accuracy on test set: {score:.2f}")
