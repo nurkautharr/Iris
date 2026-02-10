@@ -1,11 +1,13 @@
 from flask import Flask, request, jsonify
 import joblib
 import numpy as np
+import os
 
 app = Flask(__name__)
 
 # Load trained model
-model = joblib.load("iris_model.pkl")
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "model.pkl")
+model = joblib.load(MODEL_PATH)
 
 @app.route("/")
 def home():
@@ -29,4 +31,6 @@ def predict():
     })
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
